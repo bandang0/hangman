@@ -3,33 +3,39 @@
 # Provides:
 #   main()
 
-from hangman import data
-from hangman.core import *
-from hangman.interaction import *
+import data# import data
+from core import *
+from interaction import *
 
 # main function
 def main():
     """The whole hangman game, from welcome to exit."""
-    # welcome and initialise player info
+    # welcome and initialize player info
     welcome()
-    listScores()
+    try:    # user can exit if he does not create score file in listScores()
+        listScores()
+    except SystemExit:
+        goodbye()
+        return 0
     (name, score) = askName()
     tellRules()
     printScore(score)
 
     # enter the sequence of games
     while True:
-        # choose word for game nd initialize tries
+        # choose word for game and initialize tries
         word = chooseWord()
+        guessed = list()
         found = list()
         toFind = letters(word)
         tries = data.maxTries
 
         # play the actual game with this word
-        while tries > 1 and found is not toFind:
+        while tries > 0 and not incl(toFind, found):
             printState(word, found)
             showTries(tries)
-            letter = chooseLetter(found)
+            letter = chooseLetter(guessed)
+            guessed.append(letter)
             if letter in word:
                 found.append(letter)
                 rightLetter(letter)
@@ -38,8 +44,8 @@ def main():
             tries = tries - 1
 
         # determine how much to add to the score (if any)
-        if found = toFind:
-            win(word, tries)
+        if incl(toFind, found):
+            win(word, data.maxTries - tries)
             toAdd = len(word) + data.maxTries - tries
         else:
             loss(word)
