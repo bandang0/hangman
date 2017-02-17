@@ -9,7 +9,11 @@
 
 
 # game data
-wordList = ['feeling', 'sculptor', 'wonderful', 'sweetest', 'hedgerow']
+wordList = ['feeling',
+'sculptor', 'wonderful', 'sweetest', 'hedgerow', 'hacking', 'the', 'art',
+'of', 'exploitation', 'python', 'press', 'starch', 'inside', 'descriptor',
+'overflow', 'privilege' ]
+
 maxTries = 8
 scoreFile = 'scores'
 newFileString = """# High scores for the hangman game.

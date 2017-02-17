@@ -4,6 +4,7 @@
 #   goodbye()
 #   rightLetter(letter)
 #   wrongLetter(letter)
+#   wholeWord(word)
 #   askExit()
 #   showTries(tries)
 #   printScores(score)
@@ -14,8 +15,8 @@
 #   tellRules()
 
 import __init__
-import string
 import data
+import string
 
 def welcome():
     """Welcome the user to the game."""
@@ -31,19 +32,24 @@ def welcome():
         """ % (__init__.__version__, __init__.__author__)
 
 def goodbye():
-    print "So sad to see you go, see you later!"
+    print "\nSo sad to see you go, see you later!"
 
 def rightLetter(letter):
     print "Congrats, %r is one of the letters of the word!" % letter
 
 def wrongLetter(letter):
-    print "Sorry, %r is not one of the letters we're looking for." % letter
+    print "Sorry, %r is not one of the letters we're looking for, " % letter ,
+    print "nor the whole word."
+
+def wholeWord(word):
+    print "Nice! You guessed the whole word %r!" % word
 
 def askExit():
     """Ask whether to exit the program or not."""
     print "Would you like to continue playing?",
     ans = raw_input()
     if ans =='' or ans[0] == 'y' or ans[0] == 'Y':
+        print "\nGreat! New word please!"
         return False
     else:
         return True
@@ -55,25 +61,25 @@ def printScore(score):
     print "You're current score is %d points." % score
 
 def win(word, tries):
-    print "Nice! You guessed the word %r in %d tries!" % (word, tries)
+    print "\nBravo! You guessed the word %r in %d tries!" % (word, tries)
 
 def loss(word):
     print "Sorry buddy you have not more tries left, the word was %r." % word
 
 def chooseLetter(guessed):
-    print "Go ahead, guess a letter.",
+    print "Go ahead, guess a letter (or the whole word)!",
     ans = raw_input()
 
     while True:
         if ans == '' or ans[0] not in string.letters:
-            print "%r is not valid input, type in just a letter." % ans ,
+            print "%r is not valid input, type in just letters." % ans ,
             ans = raw_input()
             continue
 
-        if ans[0] in guessed:
-            print "These are the letters you've already tried: ",
+        if ans in guessed:
+            print "These are your previous tries: ",
             for i in range(len(guessed)):
-                print "%s, " % guessed[i] ,
+                print "%r, " % guessed[i] ,
             print "\nYou already tried %r! Pick another one." % ans[0] ,
             ans = raw_input()
             continue
@@ -81,7 +87,7 @@ def chooseLetter(guessed):
         else:
             break
 
-    return ans[0]
+    return ans
 
 def printState(word, found):
     """Prints the word with only the found letters."""
@@ -97,6 +103,7 @@ def printState(word, found):
 def tellRules():
     print """
     This is hangman! I'm going to pick a word and you're going to have %d tries
-    to guess the letters in the word. Along the way I'll show you the letters
-    you've already tried and the letters you've already guessed in the word.
+    to guess the letters in the word. You can also try to guess the entire
+    word.Along the way I'll show you the letters you've already tried and the
+    letters you've already guessed in the word.
     """ % data.maxTries

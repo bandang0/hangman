@@ -3,23 +3,28 @@
 # Provides:
 #   main()
 
-import data# import data
+import data
+import sys
 from core import *
 from interaction import *
 
 # main function
 def main():
     """The whole hangman game, from welcome to exit."""
-    # welcome and initialize player info
+    # welcome
     welcome()
-    try:    # user can exit if he does not create score file in listScores()
+    try:
         listScores()
+        # user can exit if he does not create score file in listScores()
     except SystemExit:
         goodbye()
-        return 0
-    (name, score) = askName()
+        sys.exit(1)
+    # initialize player info: hasName() == True if name is registered in scores
+    # oldscore = score before game, newscore = score during and after game
+    (name, oldscore, hasName) = askName()
+    newscore = oldscore
     tellRules()
-    printScore(score)
+    printScore(newscore)
 
     # enter the sequence of games
     while True:
@@ -34,33 +39,48 @@ def main():
         while tries > 0 and not incl(toFind, found):
             printState(word, found)
             showTries(tries)
-            letter = chooseLetter(guessed)
-            guessed.append(letter)
-            if letter in word:
-                found.append(letter)
-                rightLetter(letter)
-            else:
-                wrongLetter(letter)
+            answer = chooseLetter(guessed)
+            guessed.append(answer)
             tries = tries - 1
+            if answer == word:
+                # found whole word
+                found.append(answer)
+                wholeWord(word)
+                break
+
+            if answer in word:
+                # found one letter of the word
+                found.append(answer)
+                rightLetter(answer)
+            else:
+                wrongLetter(answer)
+
 
         # determine how much to add to the score (if any)
-        if incl(toFind, found):
+        if incl(toFind, found) or word in found:
             win(word, data.maxTries - tries)
-            toAdd = len(word) + data.maxTries - tries
+            toAdd = len(word) + tries
         else:
             loss(word)
             toAdd = 0
 
         # update in-game score
-        score = score + toAdd
-        printScore(score)
+        newscore = newscore + toAdd
+        printScore(newscore)
 
         exit = askExit()
         if exit is True:
             # write new score to file and quit
-            updateScore(name, score)
+            if hasName:
+                # add score to entry in scores file
+                updateScore(name, oldscore, newscore)
+            else:
+                #append name and score to scores file
+                addScore(name, newscore)
+
+            # exit
             goodbye()
-            return 0
+            sys.exit(0)
 
 
 
