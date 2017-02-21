@@ -4,9 +4,9 @@
 #   main()
 
 import data
-import sys
 from core import *
 from interaction import *
+import sys
 
 # main function
 def main():
@@ -19,7 +19,7 @@ def main():
     except SystemExit:
         goodbye()
         sys.exit(1)
-    # initialize player info: hasName() == True if name is registered in scores
+    # initialize player info: hasName == True if name is registered in scores
     # oldscore = score before game, newscore = score during and after game
     (name, oldscore, hasName) = askName()
     newscore = oldscore
@@ -41,11 +41,12 @@ def main():
             showTries(tries)
             answer = chooseLetter(guessed)
             guessed.append(answer)
-            tries = tries - 1
+
             if answer == word:
                 # found whole word
                 found.append(answer)
                 wholeWord(word)
+                tries = tries - 1
                 break
 
             if answer in word:
@@ -53,6 +54,7 @@ def main():
                 found.append(answer)
                 rightLetter(answer)
             else:
+                tries = tries - 1
                 wrongLetter(answer)
 
 
@@ -84,6 +86,6 @@ def main():
 
 
 
-# entrance point for the hangman project
-if __name__=='__main__':
+# entrance point for the hangman game
+if __name__ == '__main__':
     main()

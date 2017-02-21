@@ -1,4 +1,5 @@
 """ Interaction with user functions for the hangman project."""
+
 # Provides:
 #   welcome()
 #   goodbye()
@@ -14,9 +15,9 @@
 #   printState(word, found)
 #   tellRules()
 
-import __init__
 import data
 import string
+
 
 def welcome():
     """Welcome the user to the game."""
@@ -29,7 +30,7 @@ def welcome():
         This is free software: you are free to change and redistribute it.
         There is NO WARRANTY, to the extent permitted by law.
         For more information, please see the README file.
-        """ % (__init__.__version__, __init__.__author__)
+        """ % (data.version, data.author)
 
 def goodbye():
     print "\nSo sad to see you go, see you later!"

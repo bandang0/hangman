@@ -6,13 +6,30 @@
 #   maxTries
 #   scoreFile
 
-
+# applicatio data
+author = "R. Duque"
+version = '0.01'
 
 # game data
-wordList = ['feeling',
-'sculptor', 'wonderful', 'sweetest', 'hedgerow', 'hacking', 'the', 'art',
-'of', 'exploitation', 'python', 'press', 'starch', 'inside', 'descriptor',
-'overflow', 'privilege' ]
+wordList = [
+'feeling',
+'sculptor',
+'wonderful',
+'sweetest',
+'hedgerow',
+'hacking',
+'the',
+'art',
+'of',
+'exploitation',
+'python',
+'press',
+'starch',
+'inside',
+'descriptor',
+'overflow',
+'privilege'
+]
 
 maxTries = 8
 scoreFile = 'scores'
