@@ -1,27 +1,24 @@
 """ Interaction with user functions for the hangman project."""
 
 # Provides:
-#   welcome()
-#   goodbye()
+#   welcome
+#   goodbye
 #   rightLetter(letter)
 #   wrongLetter(letter)
 #   wholeWord(word)
 #   askExit()
 #   showTries(tries)
-#   printScores(score)
+#   printScore(score)
 #   win(word, tries)
 #   loss(word)
 #   chooseLetter(guessed)
 #   printState(word, found)
-#   tellRules()
+#   rules
 
 import data
 import string
 
-
-def welcome():
-    """Welcome the user to the game."""
-    print """
+welcome = """
         Welcome to the hangman game project, version %s.
         Learn your vocabulary and have fun, right from the command line!
 
@@ -32,18 +29,13 @@ def welcome():
         For more information, please see the README file.
         """ % (data.version, data.author)
 
-def goodbye():
-    print "\nSo sad to see you go, see you later!"
+goodbye = "\nSo sad to see you go, see you later!"
 
-def rightLetter(letter):
-    print "Congrats, %r is one of the letters of the word!" % letter
+rightLetter = "Congrats, %r is one of the letters of the word!"
 
-def wrongLetter(letter):
-    print "Sorry, %r is not one of the letters we're looking for, " % letter ,
-    print "nor the whole word."
+wrongLetter = "Sorry, %r didn't work"
 
-def wholeWord(word):
-    print "Nice! You guessed the whole word %r!" % word
+wholeWord = "Nice! You guessed the whole word %r!"
 
 def askExit():
     """Ask whether to exit the program or not."""
@@ -55,17 +47,13 @@ def askExit():
     else:
         return True
 
-def showTries(tries):
-    print "You still have %d tries left." % tries
+showTries = "You still have %d tries left."
 
-def printScore(score):
-    print "You're current score is %d points." % score
+scoreLine = "You're current score is %d points."
 
-def win(word, tries):
-    print "\nBravo! You guessed the word %r in %d tries!" % (word, tries)
+win = "\nBravo! You guessed the word %r in %d tries!"
 
-def loss(word):
-    print "Sorry buddy you have not more tries left, the word was %r." % word
+loss = "Sorry buddy you have not more tries left, the word was %r.""
 
 def chooseLetter(guessed):
     print "Go ahead, guess a letter (or the whole word)!",
@@ -101,10 +89,9 @@ def printState(word, found):
 
     print "Here's the word so far: %s" % toPrint
 
-def tellRules():
-    print """
+rules = """
     This is hangman! I'm going to pick a word and you're going to have %d tries
     to guess the letters in the word. You can also try to guess the entire
-    word.Along the way I'll show you the letters you've already tried and the
+    word. Along the way I'll show you the letters you've already tried and the
     letters you've already guessed in the word.
     """ % data.maxTries

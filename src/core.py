@@ -3,8 +3,6 @@
 # Provides:
 #   listScores()
 #   askName()
-#   chooseWord()
-#   letters(word)
 #   updateScore(name, oldscore, newscore)
 #   addScore(name, score)
 #   incl(toFind, found)
@@ -67,15 +65,6 @@ def askName():
             end = len(allStr) -1
     return (name, int(allStr[beg:end]), True)
 
-
-def chooseWord():
-    return random.choice(data.wordList)
-
-
-def letters(word):
-    return list(set(word))
-
-
 def updateScore(name, oldscore, newscore):
     """Update the score of a registered player on the scores file."""
     print "\nUpdating scores file..."
@@ -96,9 +85,7 @@ def updateScore(name, oldscore, newscore):
 def addScore(name, score):
     """Add a non-registered player and his new score to the scores file."""
     print "\nUpdating scores file..."
-    with open(data.scoreFile, 'a') as sf:
-        # write new info
-        sf.write("%s %d\n" % (name,score))
+    open(data.scoreFile, 'a').write("%s %d\n" % (name,score))
 
     print "Wrote your new score to the scores file."
 

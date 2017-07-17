@@ -1,5 +1,5 @@
 #Files ignored by commit
-#scores
+scores
 
 #Python
 *.pyc
