@@ -1,15 +1,10 @@
 """ Global data for the hangman project."""
 
 # Provides:
-#   author
 #   wordList
 #   maxTries
 #   scoreFile
 #   newFileString
-
-# application data
-author = "R. Duque"
-version = '0.01'
 
 # game data
 wordList = [

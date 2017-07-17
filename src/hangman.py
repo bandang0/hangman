@@ -9,7 +9,6 @@ import data
 import core
 import interaction
 
-
 # main function
 def main():
     """The whole hangman game, from welcome to exit."""

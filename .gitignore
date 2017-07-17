@@ -3,20 +3,3 @@ scores
 
 #Python
 *.pyc
-
-#executables
-*.out
-
-#LaTeX
-*.aux
-*.lof
-*.log
-*.lot
-*.fls
-*.toc
-*.dvi
-*.synctex.gz
-*.nav
-*.pre
-*.snm
-*.vrb

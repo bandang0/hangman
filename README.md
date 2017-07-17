@@ -18,6 +18,6 @@ Here are the commands to issue:
 
 ### Scores file
 
-v1.0 of `hangman` is a CLI program. It takes no arguments and interaction with the user serves as a guide through the game.
+`hangman` is a CLI program. It takes no arguments and interaction with the user serves as a guide through the game.
 
 `hangman` registers the scores and names of the players who have already played in a file named `scores`. In order to have access to these scores, the file must be in the directory where you're playing, or else a brand new file will be created with scores back to zero (not touching all the other `scores` files elsewhere on the system, of course).
