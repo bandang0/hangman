@@ -83,7 +83,8 @@ def updateScore(name, oldscore, newscore):
 def addScore(name, score):
     """Add a non-registered player and his new score to the scores file."""
     print "\nUpdating scores file..."
-    open(data.scoreFile, 'a').write("%s %d\n" % (name,score))
+    with open(data.scoreFile, 'a') as sf:
+        sf.write("%s %d\n" % (name,score))
 
     print "Wrote your new score to the scores file."
 
@@ -97,10 +98,9 @@ def noComment(fileName, exclude = '#'):
     if not os.path.isfile(fileName):
         raise IOError("%r file not found while extracting non-comment lines.")
     else:
-        sf = open(fileName, 'r')
-        for line in sf: # populate string with names and scores
-            if not exclude in line:
-                allStr = allStr + line
-        sf.close()
+        with open(fileName, 'r') as sf:
+            for line in sf: # populate string with names and scores
+                if not exclude in line:
+                    allStr = allStr + line
 
     return allStr
