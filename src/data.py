@@ -1,12 +1,13 @@
 """ Global data for the hangman project."""
 
 # Provides:
-#   welcomeString
+#   author
 #   wordList
 #   maxTries
 #   scoreFile
+#   newFileString
 
-# applicatio data
+# application data
 author = "R. Duque"
 version = '0.01'
 

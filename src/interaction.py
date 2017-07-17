@@ -29,7 +29,7 @@ welcome = """
         For more information, please see the README file.
         """ % (data.version, data.author)
 
-goodbye = "\nSo sad to see you go, see you later!"
+goodbye = "\nSee you later!"
 
 rightLetter = "Congrats, %r is one of the letters of the word!"
 
@@ -53,23 +53,23 @@ scoreLine = "You're current score is %d points."
 
 win = "\nBravo! You guessed the word %r in %d tries!"
 
-loss = "Sorry buddy you have not more tries left, the word was %r.""
+loss = "Sorry buddy you have not more tries left, the word was %r."
 
 def chooseLetter(guessed):
-    print "Go ahead, guess a letter (or the whole word)!",
+    print "Go ahead, guess a letter or a word)!",
     ans = raw_input()
 
     while True:
-        if ans == '' or ans[0] not in string.letters:
+        if ans == '' or not set(ans).issubset(set(string.letters)):
             print "%r is not valid input, type in just letters." % ans ,
             ans = raw_input()
             continue
 
         if ans in guessed:
             print "These are your previous tries: ",
-            for i in range(len(guessed)):
-                print "%r, " % guessed[i] ,
-            print "\nYou already tried %r! Pick another one." % ans[0] ,
+            for i in guessed:
+                print "%r, " % i
+            print "\nYou already tried %r! Pick another one." % ans ,
             ans = raw_input()
             continue
 
@@ -81,13 +81,13 @@ def chooseLetter(guessed):
 def printState(word, found):
     """Prints the word with only the found letters."""
     toPrint = ''
-    for i in range(len(word)):
-        if word[i] in found:
-            toPrint = toPrint + word[i]
+    for i in word:
+        if i in found:
+            toPrint = toPrint + i
         else:
             toPrint = toPrint + '*'
 
-    print "Here's the word so far: %s" % toPrint
+    print "\nHere's the word so far: %s" % toPrint
 
 rules = """
     This is hangman! I'm going to pick a word and you're going to have %d tries

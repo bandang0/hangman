@@ -3,10 +3,12 @@
 # Provides:
 #   main()
 
+import sys
+import random
 import data
 import core
 import interaction
-import sys
+
 
 # main function
 def main():
@@ -30,35 +32,35 @@ def main():
     while True:
         # choose word for game and initialize tries
         word = random.choice(data.wordList)
-        guessed = list()
-        found = list()
-        toFind = list(set(word))
+        guessed = set()
+        found = set()
+        toFind = set(word)
         tries = data.maxTries
 
         # play the actual game with this word
-        while tries > 0 and not core.incl(toFind, found):
+        while tries > 0 and not toFind.issubset(found):
             interaction.printState(word, found)
-            print showTries % tries
+            print interaction.showTries % tries
             answer = interaction.chooseLetter(guessed)
-            guessed.append(answer)
+            guessed.add(answer)
 
             if answer == word:
                 # found whole word
-                found.append(answer)
+                found.add(answer)
                 print interaction.wholeWord % word
                 tries = tries - 1
                 break
 
             if answer in word:
                 # found one letter of the word
-                found.append(answer)
+                found.add(answer)
                 print interaction.rightLetter % answer
             else:
                 tries = tries - 1
                 print interaction.wrongLetter % answer
 
         # determine how much to add to the score (if any)
-        if core.incl(toFind, found) or word in found:
+        if toFind.issubset(found) or word in found:
             print interaction.win % (word, data.maxTries - tries)
             toAdd = len(word) + tries
         else:

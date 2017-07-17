@@ -1,4 +1,0 @@
-Python 2.7+
-  packages: random, string, os, sys
-
-make

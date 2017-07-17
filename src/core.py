@@ -5,11 +5,9 @@
 #   askName()
 #   updateScore(name, oldscore, newscore)
 #   addScore(name, score)
-#   incl(toFind, found)
 #   noComment(fileName, exclude = '#')
 
 import data
-import random
 import os
 import string
 
@@ -88,15 +86,6 @@ def addScore(name, score):
     open(data.scoreFile, 'a').write("%s %d\n" % (name,score))
 
     print "Wrote your new score to the scores file."
-
-def incl(toFind, found):
-    """Verify toFind (as a unordered set) is included in found."""
-    rtn = True
-    for k in toFind:
-        rtn = rtn and k in found
-        if not rtn:
-            return False
-    return True
 
 def noComment(fileName, exclude = '#'):
     """Return string of all the non-commented lines of the file.

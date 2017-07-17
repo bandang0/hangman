@@ -1,7 +1,0 @@
-figure out how to import src/__init.py__ automatically
-figure out how to update scores withou rewriting file entirely
-add more words
-decrement tries if only if failure?
-start makefile support for installation
-start doc
-start tests
